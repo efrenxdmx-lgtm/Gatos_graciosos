@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería de Gatos 🐾</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d0d;
+      --card: #1a1a1a;
+      --accent: #ffdd00;
+      --accent2: #ff4d6d;
+      --text: #f0f0f0;
+      --muted: #888;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Nunito', sans-serif;
+      min-height: 100vh;
+      padding: 2rem 1rem 4rem;
+      overflow-x: hidden;
+    }
+
+    /* Noise overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.4;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      animation: dropIn 0.7s cubic-bezier(.22,1,.36,1) both;
+    }
+
+    header h1 {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      letter-spacing: 4px;
+      color: var(--accent);
+      text-shadow: 4px 4px 0 var(--accent2), 8px 8px 0 #00000055;
+      line-height: 1;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid #2a2a2a;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 0.6s ease both;
+      cursor: pointer;
+    }
+
+    .card:nth-child(1) { animation-delay: 0.1s; }
+    .card:nth-child(2) { animation-delay: 0.2s; }
+    .card:nth-child(3) { animation-delay: 0.3s; }
+    .card:nth-child(4) { animation-delay: 0.4s; }
+    .card:nth-child(5) { animation-delay: 0.5s; }
+
+    .card:hover {
+      transform: translateY(-6px) rotate(-1deg);
+      border-color: var(--accent);
+      box-shadow: 0 12px 40px rgba(255, 221, 0, 0.15);
+    }
+
+    .card:nth-child(even):hover {
+      transform: translateY(-6px) rotate(1deg);
+    }
+
+    .img-wrap {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .img-wrap img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+      filter: brightness(0.95) contrast(1.05);
+    }
+
+    .card:hover .img-wrap img {
+      transform: scale(1.05);
+    }
+
+    .badge {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--accent);
+      color: #000;
+      font-family: 'Bangers', cursive;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 999px;
+    }
+
+    .caption {
+      padding: 1.2rem 1.4rem 1.4rem;
+    }
+
+    .caption .emoji {
+      font-size: 1.8rem;
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+
+    .caption h2 {
+      font-family: 'Bangers', cursive;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .caption p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      color: #333;
+      font-size: 0.8rem;
+      letter-spacing: 2px;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes dropIn {
+      from { opacity: 0; transform: translateY(-40px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🐱 GALERÍA GATUNA 🐱</h1>
+  <p>documentos oficiales de existencia felina</p>
+</header>
+
+<div class="grid">
+
+  <!-- Gato 1: Bebé recién nacido con cara de maldad -->
+  <div class="card">
+    <div class="img-wrap">
+      <img src="1000107542.jpg" alt="Gatito bebé con cara de malvado">
+      <span class="badge">nº1</span>
+    </div>
+    <div class="caption">
+      <span class="emoji">😈</span>
+      <h2>"Acabo de nacer y ya tengo planes"</h2>
+      <p>Lleva 3 días en este mundo y ya sabe que va a dominar la casa. Sus ojitos dicen "aún no sé caminar pero sí sé manipular".</p>
+    </div>
+  </div>
+
+  <!-- Gato 2: El gato serio con cara de gerente -->
+  <div class="card">
+    <div class="img-wrap">
+      <img src="1000101091.jpg" alt="Gato tabby serio mirando a cámara">
+      <span class="badge">nº2</span>
+    </div>
+    <div class="caption">
+      <span class="emoji">📋</span>
+      <h2>"Necesito hablar contigo sobre el rendimiento de la semana"</h2>
+      <p>Es el gerente de Recursos Felinos. Lleva 6 años en la empresa y no está impresionado con tu trabajo.</p>
+    </div>
+  </div>
+
+  <!-- Gato 3: El Scottish Fold redondo con cara de perdido -->
+  <div class="card">
+    <div class="img-wrap">
+      <img src="1000106948.jpg" alt="Gato Scottish Fold redondito">
+      <span class="badge">nº3</span>
+    </div>
+    <div class="caption">
+      <span class="emoji">🥺</span>
+      <h2>"oztiaz papu... me dejaste solo 4 segundos"</h2>
+      <p>Es literalmente una bola de ansiedad con patas. Si lo ignoras 5 minutos presenta signos de abandono crónico.</p>
+    </div>
+  </div>
+
+  <!-- Gato 4: El de la foto desenfocada encima del dueño -->
+  <div class="card">
+    <div class="img-wrap">
+      <img src="1000104981.jpg" alt="Gato muy cerca de la cámara">
+      <span class="badge">nº4</span>
+    </div>
+    <div class="caption">
+      <span class="emoji">📸</span>
+      <h2>"Disculpa, ¿qué estás haciendo con ese teléfono?"</h2>
+      <p>Invadió tu espacio personal, tu cámara y probablemente tu alma. No pide disculpas. Nunca las pedirá.</p>
+    </div>
+  </div>
+
+  <!-- Gato 5: El gato azulado con cara de escéptico -->
+  <div class="card">
+    <div class="img-wrap">
+      <img src="1000107544.jpg" alt="Gato con tono azulado mirando fijo">
+      <span class="badge">nº5</span>
+    </div>
+    <div class="caption">
+      <span class="emoji">🧐</span>
+      <h2>"Sé exactamente lo que hiciste"</h2>
+      <p>Testigo presencial. No dice nada. Solo sabe. Lleva así 3 horas, sentado en silencio, juzgándote sin palabras.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>🐾 hecho con amor gatuno · todos los gatos son inocentes (mentira) 🐾</p>
+</footer>
+
+</body>
+</html>
